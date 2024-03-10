@@ -4,10 +4,12 @@
 
 
 double pown(double value, uint16_t n) {
-    double result = 1.0;
-    for (uint16_t i = 0; i < n; i++) {
+    if (n == 0)
+        return 1;
+    double result = value;
+    for (uint16_t i = 1; i < n; i++) {
         result *= value;
-        }
+    }
     return result;
 }
 
@@ -32,15 +34,16 @@ double expn(double x, uint16_t count) {
 double sinn(double x, uint16_t count) {
     double sum = 0.0;
     for (uint16_t n = 0; n < count; n++) {
-        sum += ((n % 2 == 0) ? 1 : -1) * pown(x, 2 * n + 1) / fact(2 * n + 1);
+        int sign = (n % 2 == 0) ? 1 : -1;
+        sum += sign * pown(x, 2 * n + 1) / fact(2 * n + 1);
     }
     return sum;
 }
 
 double cosn(double x, uint16_t count) {
-    double sum = 0;
-    for (uint64_t n = 1; n <= count; n++) {
-    sum += calcItem(x, (2 * i) - 2) * pown(-1, i-1);
+    double sum = 1.0;
+    for (uint16_t n = 1; n <= count; n++) {
+        sum += ((n % 2 == 0) ? 1 : -1) * pown(x, 2 * n) / fact(2 * n);
     }
     return sum;
 }
